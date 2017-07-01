@@ -2,12 +2,31 @@
 <html>
 <head>
 <meta charset="utf-8">
-	<title></title>
-	<script type="text/javascript" defer>
-	console.log('Hello World');
-	</script>
+	<title>Goblin</title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+	
+	
 </head>
 <body>
 
+	<img src="goblin.jpg" class ="image" alt="Гоблин">
+  <script type="text/javascript" defer>
+	
+	var hp = 100;
+  $(".image").click(function(){
+    if (hp === 0) {
+    	alert ('goblin is died');
+    }
+    else {
+      hp -= 10;
+    	alert('goblin is alive');
+    } 
+  });
+	
+    
+	</script>
 </body>
 </html>
