@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-	<title>Goblin</title>
-	<script
-  src="https://code.jquery.com/jquery-3.2.1.js"
-  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-  crossorigin="anonymous"></script>
-	
-	
+    <meta charset="utf-8">
+    <title>Goblin</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
 </head>
+
 <body>
 
-	<img src="goblin.jpg" class ="image" alt="Гоблин">
-  <script type="text/javascript" defer>
-	
-	var hp = 100;
-  $(".image").click(function(){
-    if (hp === 0) {
-    	alert ('goblin is died');
-    }
-    else {
-      hp -= 10;
-    	alert('goblin is alive');
-    } 
-  });
-	
-    
-	</script>
+    <img src="goblin.jpg" class="image" alt="Гоблин">
+    <table border="2" bgcolor="lightgreen" width="391" height="25">
+        <tr>
+            <td id="hp1"></td>
+            <td id="hp2"></td>
+            <td id="hp3"></td>
+            <td id="hp4"></td>
+            <td id="hp5"></td>
+        </tr>
+    </table>
+    <script type="text/javascript" defer>
+        var hp = 100;
+        $(".image").click(function() {
+            if (hp === 0) {
+                alert('goblin is died');
+            } else {
+                hp -= 20;
+                alert('goblin is alive');
+            }
+            $('#hp1').css('background', 'red');
+
+        });
+
+        
+           
+        
+        	
+    </script>
 </body>
+
 </html>
