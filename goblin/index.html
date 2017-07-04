@@ -13,23 +13,20 @@
     <img src="goblin.jpg" class="image" alt="Гоблин">
     <table class="table" bgcolor="lightgreen" border="2" width="391" height="25">
         <tr>
-            <td id="hp1"></td>
-            <td id="hp2"></td>
-            <td id="hp3"></td>
-            <td id="hp4"></td>
-            <td id="hp5"></td>
+            <td class="hp" id="hp1"></td>
+            <td class="hp" id="hp2"></td>
+            <td class="hp" id="hp3"></td>
+            <td class="hp" id="hp4"></td>
+            <td class="hp" id="hp5"></td>
         </tr>
     </table>
     <script type="text/javascript" defer>
         var hp = 100;
         $(".image").click(function() {
-        	hp -= 20;
+         hp -= 20;
 
-        	$('#hp5').css('background', 'lightgreen');
-        	$('#hp4').css('background', 'lightgreen');
-        	$('#hp3').css('background', 'lightgreen');
-        	$('#hp2').css('background', 'lightgreen');
-        	$('#hp1').css('background', 'lightgreen');
+         $('.hp').css('background', 'lightgreen');
+         
 
             if (hp < 81) {
                 $('#hp5').css('background', 'red');
@@ -43,10 +40,20 @@
             if (hp < 21) {
                 $('#hp2').css('background', 'red');               
             } 
-            if (hp < 1) {
+            if (hp < 1)  {
                 $('#hp1').css('background', 'red').promise().done(function(){
                     setTimeout(function(){
-                        alert('goblin is died');
+                        var result = confirm('Гоблин мёртв. Воскресить?');
+                        if (result === true) {
+                            $('.hp').css('background', 'lightgreen').promise().done(function(){
+                                setTimeout(function(){
+                                    alert('Гоблин воскрешен!');
+                                }, 300);
+                           });  
+                        }
+                        else {
+                            alert('Гоблин мёртв.');
+                        }
                     }, 300);
                 });
             }
