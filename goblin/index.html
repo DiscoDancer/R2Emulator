@@ -11,7 +11,7 @@
 <body>
 
     <img src="goblin.jpg" class="image" alt="Гоблин">
-    <table border="2" bgcolor="lightgreen" width="391" height="25">
+    <table class="table" bgcolor="lightgreen" border="2" width="391" height="25">
         <tr>
             <td id="hp1"></td>
             <td id="hp2"></td>
@@ -23,61 +23,30 @@
     <script type="text/javascript" defer>
         var hp = 100;
         $(".image").click(function() {
-            if (hp === 0) {
-                alert('goblin is died');
-            } else {
-                hp -= 20;
+        	hp -= 20;
 
-            }
-            if (hp == 80) {
+        	$('#hp5').css('background', 'lightgreen');
+        	$('#hp4').css('background', 'lightgreen');
+        	$('#hp3').css('background', 'lightgreen');
+        	$('#hp2').css('background', 'lightgreen');
+        	$('#hp1').css('background', 'lightgreen');
 
+            if (hp < 81) {
                 $('#hp5').css('background', 'red');
-            } else {
-
-                $('#hp5').css('background', 'lightgreen');
-
             }
-            if (hp == 60) {
-
-                $('#hp4').css('background', 'red');
-                $('#hp5').css('background', 'red');
-            } else {
-
-                $('#hp4').css('background', 'lightgreen');
-
-            }
-            if (hp == 40) {
-
-                $('#hp3').css('background', 'red');
-                $('#hp4').css('background', 'red');
-                $('#hp5').css('background', 'red');
-            } else {
-
-                $('#hp3').css('background', 'lightgreen');
-
-            }
-            if (hp == 20) {
-
-                $('#hp2').css('background', 'red');
-                $('#hp3').css('background', 'red');
-                $('#hp4').css('background', 'red');
-                $('#hp5').css('background', 'red');
-            } else {
-
-                $('#hp2').css('background', 'lightgreen');
-
-            }
-            if (hp == 0) {
-
-                $('#hp1').css('background', 'red');
-                $('#hp2').css('background', 'red');
-                $('#hp3').css('background', 'red');
-                $('#hp4').css('background', 'red');
-                $('#hp5').css('background', 'red');
-            } else {
-
-                $('#hp1').css('background', 'lightgreen');
-
+            if (hp < 61) {
+                $('#hp4').css('background', 'red');      
+            } 
+            if (hp < 41) {
+                $('#hp3').css('background', 'red');              
+            } 
+            if (hp < 21) {
+                $('#hp2').css('background', 'red');               
+            } 
+            if (hp < 1) {
+                $('#hp1').css('background', 'red').promise().done(function(){
+                	alert('goblin is died');
+                });
             }
 
         });
