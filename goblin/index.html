@@ -45,7 +45,9 @@
             } 
             if (hp < 1) {
                 $('#hp1').css('background', 'red').promise().done(function(){
-                	alert('goblin is died');
+                    setTimeout(function(){
+                        alert('goblin is died');
+                    }, 300);
                 });
             }
 
