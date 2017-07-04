@@ -22,28 +22,33 @@
     </table>
     <script type="text/javascript" defer>
         var hp = 100;
-        $(".image").click(function() {
-         hp -= 20;
 
-         $('.hp').css('background', 'lightgreen');
-         
-           for (var i = 81, j = 5; j > 1; i -= 20, j--){
-           	if (hp < i){
-           		$('#hp' + j).css('background', 'red');
-           	}
-           }
-            if (hp < 1)  {
-                $('#hp1').css('background', 'red').promise().done(function(){
-                    setTimeout(function(){
+        function makeGoblinAlive() {
+            $('.hp').css('background', 'lightgreen').promise().done(function() {
+                hp = 100;
+                setTimeout(function() {
+                    alert('Гоблин воскрешен!');
+                }, 300);
+            });
+        }
+
+        $(".image").click(function() {
+            hp -= 20;
+
+            $('.hp').css('background', 'lightgreen');
+
+            for (var i = 81, j = 5; j > 1; i -= 20, j--) {
+                if (hp < i) {
+                    $('#hp' + j).css('background', 'red');
+                }
+            }
+            if (hp < 1) {
+                $('#hp1').css('background', 'red').promise().done(function() {
+                    setTimeout(function() {
                         var result = confirm('Гоблин мёртв. Воскресить?');
                         if (result === true) {
-                            $('.hp').css('background', 'lightgreen').promise().done(function(){
-                                setTimeout(function(){
-                                    alert('Гоблин воскрешен!');
-                                }, 300);
-                           });  
-                        }
-                        else {
+                            makeGoblinAlive();
+                        } else {
                             alert('Гоблин мёртв.');
                         }
                     }, 300);
