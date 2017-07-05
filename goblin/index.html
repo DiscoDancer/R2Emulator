@@ -2,176 +2,187 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>Goblin</title>
-	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <title>Goblin</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+    <style>
+        section {
+            float: left;
+        }
+    </style>
 
 </head>
 
 <body>
-	<table>
-		<thead>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-					<img src="goblin.jpg" class="image" alt="Гоблин">
-					<table class="table" bgcolor="lightgreen" border="2" width="391" height="25">
-						<tr>
-							<td class="hp" id="hp1"></td>
-							<td class="hp" id="hp2"></td>
-							<td class="hp" id="hp3"></td>
-							<td class="hp" id="hp4"></td>
-							<td class="hp" id="hp5"></td>
-						</tr>
-					</table>
-					<br>
+<section>
+    <img src="goblin.jpg" class="image" alt="Гоблин">
+    <table class="table" bgcolor="lightgreen" border="2" width="391" height="25">
+        <tr>
+            <td class="hp" id="hp1"></td>
+            <td class="hp" id="hp2"></td>
+            <td class="hp" id="hp3"></td>
+            <td class="hp" id="hp4"></td>
+            <td class="hp" id="hp5"></td>
+        </tr>
+    </table>
+    <br>
+    <textarea rows="10" cols="53"></textarea>
+</section>
 
-					<textarea rows="10" cols="53"></textarea>
-				</td>
-				<td>
-					<table border="1">
+<section>
+    <table border="1">
+        <thead>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+            <td>
+                <img src="pictures/Empty_cell.jpg">
+            </td>
+        </tr>
 
-						<thead>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-								<td>
-									<img src="pictures/Empty_cell.jpg">
-								</td>
-							</tr>
-							</td>
-						</tbody>
+        </tbody>
+    </table>
+</section>
 
-					</table>
-			</tr>
-		</tbody>
+<script type="text/javascript" defer>
+    var hp = 100;
+	
+	function killGoblin(message) {
+		var txt = $("textarea");
+		txt.val(txt.val() + message + "\n");
+	}
 
-	</table>
-
-	<script type="text/javascript" defer>
-		var hp = 100;
-
-		function makeGoblinAlive() {
-			$('.hp').css('background', 'lightgreen').promise().done(function () {
-				hp = 100;
-				setTimeout(function () {
-					alert('Гоблин воскрешен!');
-				}, 300);
-			});
+    function addMessageLine(text) {
+			var txt = $("textarea");
+			txt.val(txt.val() + text + "\n");
 		}
+    function makeGoblinAlive() {
+        $('.hp').css('background', 'lightgreen').promise().done(function () {
+            hp = 100;
+            setTimeout(function () {
+              /*  alert('Гоблин воскрешен!');*/
+            }, 300);
+        });
+    }
 
-		$(".image").click(function () {
-			hp -= 20;
+    $(".image").click(function () {
+        hp -= 20;
 
-			$('.hp').css('background', 'lightgreen');
+		addMessageLine("Hit");
 
-			for (var i = 81, j = 5; j > 1; i -= 20, j--) {
-				if (hp < i) {
-					$('#hp' + j).css('background', 'red');
-				}
-			}
-			if (hp < 1) {
-				$('#hp1').css('background', 'red').promise().done(function () {
-					setTimeout(function () {
-						var result = confirm('Гоблин мёртв. Воскресить?');
-						if (result === true) {
-							makeGoblinAlive();
-						} else {
-							alert('Гоблин мёртв.');
-						}
-					}, 300);
-				});
-			}
-			var items = [
+        $('.hp').css('background', 'lightgreen');
 
-				{
-					id: 1,
-					description: 'Блестящий шлем, изготовленный из металла.',
-					name: 'Шлем гоблина',
-					rate: 5,
-					imageUrl: 'Helmet.jpg'
-				}, {
-					id: 2,
-					description: 'Доспех гоблина.',
-					name: 'Доспех гоблина',
-					rate: 10,
-					imageUrl: 'Armor.jpg'
-				}, {
-					id: 3,
-					description: 'Сапоги, изготовленные гоблином.',
-					name: 'Сапоги гоблина',
-					rate: 5,
-					imageUrl: 'Boots.jpg'
-				}, {
-					id: 4,
-					description: 'Маленький и легкий щит, который может использовать кто угодно.',
-					name: 'Круглый щит',
-					rate: 5,
-					imageUrl: 'Shield.jpg'
-				}, {
-					id: 3,
-					description: 'Часть гоблинской кольчуги.',
-					name: 'Часть гоблинской кольчуги',
-					rate: 5,
-					imageUrl: 'PartOfMail.jpg'
-				}
+        for (var i = 81, j = 5; j > 1; i -= 20, j--) {
+            if (hp < i) {
+                $('#hp' + j).css('background', 'red');
+            }
+        }
+        if (hp < 1) {
+            $('#hp1').css('background', 'red').promise().done(function () {
+                setTimeout(function () {
+                   var result = confirm('Гоблин мёртв. Воскресить?');
+                    if (result === true) {
+                        makeGoblinAlive();
+                    } else {
+                       /* alert('Гоблин мёртв.'); */
+                    }
+                }, 300);
 
-			];
+                killGoblin("Вами был убит противник Гоблин!*");
+            });
+        }
+		
+        var items = [
 
-		});
-	</script>
+            {
+                id: 1,
+                description: 'Блестящий шлем, изготовленный из металла.',
+                name: 'Шлем гоблина',
+                rate: 5,
+                imageUrl: 'Helmet.jpg'
+            }, {
+                id: 2,
+                description: 'Доспех гоблина.',
+                name: 'Доспех гоблина',
+                rate: 10,
+                imageUrl: 'Armor.jpg'
+            }, {
+                id: 3,
+                description: 'Сапоги, изготовленные гоблином.',
+                name: 'Сапоги гоблина',
+                rate: 5,
+                imageUrl: 'Boots.jpg'
+            }, {
+                id: 4,
+                description: 'Маленький и легкий щит, который может использовать кто угодно.',
+                name: 'Круглый щит',
+                rate: 5,
+                imageUrl: 'Shield.jpg'
+            }, {
+                id: 3,
+                description: 'Часть гоблинской кольчуги.',
+                name: 'Часть гоблинской кольчуги',
+                rate: 5,
+                imageUrl: 'PartOfMail.jpg'
+            }
+
+        ];
+
+    });
+</script>
 </body>
 
 </html>
