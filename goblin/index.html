@@ -43,7 +43,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <img id="t444" src="pictures/Empty_cell.jpg">
+                        <img src="pictures/Empty_cell.jpg">
                     </td>
                     <td>
                         <img src="pictures/Empty_cell.jpg">
@@ -144,7 +144,10 @@
                 amountItems = 0;
             }
             $('#inventory > tbody > tr:eq('+ Math.floor(amountItems / 4) +') > td:eq('+ (amountItems % 4) +') > img').attr("src","pictures//" + item.imageUrl);
-            // todo: add text to <td> that contais img
+         
+            console.log('#inventory > tbody > tr > td');
+            $('#inventory > tbody > tr > td').attr("text" , "pictures//" + item.description);
+             // todo: add text to <td> that contais img
             amountItems++;
         }
 
