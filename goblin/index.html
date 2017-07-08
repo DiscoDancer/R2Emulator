@@ -5,6 +5,12 @@
     <meta charset="utf-8">
     <title>Goblin</title>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="items.js">
+
+    </script>
+    <script src="helper.js">
+
+    </script>
 
     <style>
         section {
@@ -27,25 +33,25 @@
             </tr>
         </table>
         <br>
-        <textarea rows="10" cols="53"></textarea>
+        <textarea rows="10" cols="53" readonly></textarea>
     </section>
 
     <section>
-        <table border="1">
+        <table border="1" id="inventory">
             <thead>
             </thead>
             <tbody>
                 <tr>
-                    <td id="1">
+                    <td>
+                        <img id="t444" src="pictures/Empty_cell.jpg">
+                    </td>
+                    <td>
                         <img src="pictures/Empty_cell.jpg">
                     </td>
-                    <td id="2">
+                    <td>
                         <img src="pictures/Empty_cell.jpg">
                     </td>
-                    <td id="3">
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td id="4">
+                    <td>
                         <img src="pictures/Empty_cell.jpg">
                     </td>
                 </tr>
@@ -98,24 +104,53 @@
 
     <script type="text/javascript" defer>
         var hp = 100;
+        var amountItems = 0;
 
-        function dropGoblin() {
-            $("#1")
-        }
-
-        function killGoblin(message) {
+        function writeSystemMessage(message) {
             var txt = $("textarea");
             txt.val(txt.val() + message + "\n");
         }
 
+        function dropGoblin() {
+            var result = getRandomNumber(0, 5);
+            var outLine = "*Вами был получен предмет [";
+            switch (result) {
+                case 0:
+                    outLine += _items[0].name;
+                    break;
+                case 1:
+                    outLine += _items[1].name;
+                    break;
+                case 2:
+                    outLine += _items[2].name;
+                    break;
+                case 3:
+                    outLine += _items[3].name;
+                    break;
+                case 4:
+                    outLine += _items[4].name;
+                    break;
+                default:
+                    break;
+            }
+            outLine += '].*';
+            writeSystemMessage(outLine);
+            addItemToInventory(_items[result]);
+        }
+
+        function addItemToInventory(item) {
+            if (amountItems === 16) {
+                $('#inventory > tbody > tr > td > img').attr("src","pictures/Empty_cell.jpg");
+                amountItems = 0;
+            }
+            $('#inventory > tbody > tr:eq('+ Math.floor(amountItems / 4) +') > td:eq('+ (amountItems % 4) +') > img').attr("src","pictures//" + item.imageUrl);
+            // todo: add text to <td> that contais img
+            amountItems++;
+        }
 
         function makeGoblinAlive() {
-            $('.hp').css('background', 'lightgreen').promise().done(function () {
-                hp = 100;
-                setTimeout(function () {
-                    /*  alert('Гоблин воскрешен!');*/
-                }, 300);
-            });
+            $('.hp').css('background', 'lightgreen');
+            hp = 100;
         }
 
         $(".image").click(function () {
@@ -128,57 +163,21 @@
                     $('#hp' + j).css('background', 'red');
                 }
             }
+
             if (hp < 1) {
                 $('#hp1').css('background', 'red').promise().done(function () {
                     setTimeout(function () {
-                        var result = confirm('Гоблин мёртв. Воскресить?');
-                        if (result === true) {
-                            makeGoblinAlive();
-                        } else {
-                            /* alert('Гоблин мёртв.'); */
-                        }
-                    }, 300);
-
-                    killGoblin("*Вами был убит противник [Гоблин].*");
+                        writeSystemMessage("*Вами был убит противник [Гоблин].*");
+                        dropGoblin();
+                        setTimeout(function () {
+                            var result = confirm('Гоблин мёртв. Воскресить?');
+                            if (result === true) {
+                                makeGoblinAlive();
+                            }
+                        }, 100);
+                    }, 100);
                 });
             }
-
-            var items = [
-
-                {
-                    id: 1,
-                    description: 'Блестящий шлем, изготовленный из металла.',
-                    name: 'Шлем гоблина',
-                    rate: 5,
-                    imageUrl: 'Helmet.jpg'
-                }, {
-                    id: 2,
-                    description: 'Доспех гоблина.',
-                    name: 'Доспех гоблина',
-                    rate: 10,
-                    imageUrl: 'Armor.jpg'
-                }, {
-                    id: 3,
-                    description: 'Сапоги, изготовленные гоблином.',
-                    name: 'Сапоги гоблина',
-                    rate: 5,
-                    imageUrl: 'Boots.jpg'
-                }, {
-                    id: 4,
-                    description: 'Маленький и легкий щит, который может использовать кто угодно.',
-                    name: 'Круглый щит',
-                    rate: 5,
-                    imageUrl: 'Shield.jpg'
-                }, {
-                    id: 3,
-                    description: 'Часть гоблинской кольчуги.',
-                    name: 'Часть гоблинской кольчуги',
-                    rate: 5,
-                    imageUrl: 'PartOfMail.jpg'
-                }
-
-            ];
-
         });
     </script>
 </body>
