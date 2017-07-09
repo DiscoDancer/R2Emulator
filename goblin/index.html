@@ -16,12 +16,28 @@
         section {
             float: left;
         }
+
+        .equipment-table {
+            float: left;
+        }
+
+        .equipment-table-left {
+            margin-left: 2%;
+            margin-top: 20%;
+        }
+
+        #equipment-tables {
+            background-image: url("equipment/background.jpg");
+            height: 230px;
+            width: 165px;
+            margin-left: 10px;
+        }
     </style>
 
 </head>
 
 <body>
-    <section>
+    <section name="hp">
         <img src="goblin.jpg" class="image" alt="Гоблин">
         <table class="table" bgcolor="lightgreen" border="2" width="391" height="25">
             <tr>
@@ -36,7 +52,7 @@
         <textarea rows="10" cols="53" readonly></textarea>
     </section>
 
-    <section>
+    <section name="inventory">
         <table border="1" id="inventory">
             <thead>
             </thead>
@@ -102,6 +118,48 @@
         </table>
     </section>
 
+    <section name="equipment">
+        <div id="equipment-tables">
+            <table class="equipment-table-left equipment-table" cellpadding="0">
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="equipment//necklace.jpg"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="equipment//sword.jpg"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="equipment//ring1.jpg"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="equipment-table" cellpadding="0">
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="equipment//helmet.jpg"></td>
+                        <td><img src="equipment//cloak.jpg"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="equipment//armor.jpg"></td>
+                        <td><img src="equipment//shield.jpg"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="equipment//belt.jpg"></td>
+                        <td><img src="equipment//gloves.jpg"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="equipment//boots.jpg"></td>
+                        <td><img src="equipment//ring2.jpg"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
     <script type="text/javascript" defer>
         var hp = 100;
         var amountItems = 0;
@@ -140,14 +198,11 @@
 
         function addItemToInventory(item) {
             if (amountItems === 16) {
-                $('#inventory > tbody > tr > td > img').attr("src","pictures/Empty_cell.jpg");
+                $('#inventory > tbody > tr > td > img').attr("src", "pictures/Empty_cell.jpg");
                 amountItems = 0;
             }
-            $('#inventory > tbody > tr:eq('+ Math.floor(amountItems / 4) +') > td:eq('+ (amountItems % 4) +') > img').attr("src","pictures//" + item.imageUrl);
-         
-            console.log('#inventory > tbody > tr > td');
-            $('#inventory > tbody > tr > td').attr("text" , "pictures//" + item.description);
-             // todo: add text to <td> that contais img
+            $('#inventory > tbody > tr:eq(' + Math.floor(amountItems / 4) + ') > td:eq(' + (amountItems % 4) + ') > img').attr("src", "pictures//" + item.imageUrl);
+            $('#inventory > tbody > tr:eq(' + Math.floor(amountItems / 4) + ') > td:eq(' + (amountItems % 4) + ')').attr("title", item.description);
             amountItems++;
         }
 
