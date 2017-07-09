@@ -86,14 +86,34 @@
 
         .table1 {
             border-radius: 7px;
+            position: absolute;
+            left: 430px;
+            top: 660px;
         }
 
         .table2 {
             border-radius: 7px;
+            position: absolute;
+            left: 430px;
+            top: 610px;
         }
 
-        p {
-            text-align: center;
+        .p1 {
+            position: absolute;
+            left: 620px;
+            bottom: 350px;
+        }
+
+        .p2 {
+            position: absolute;
+            left: 620px;
+            bottom: 300px;
+        }
+
+        .image1 {
+            position: absolute;
+            left: 500px;
+            top: 270px;
         }
     </style>
 
@@ -114,16 +134,18 @@
         <br>
         <button id="btnClean">Очистить</button> <br>
         <textarea rows="10" cols="53" readonly></textarea>
-        <table class="table2" bgcolor="red" border="1" width="391" height="25">
-            <p>HP</p>
-            <tr>
-            </tr>
-        </table>
         <table class="table1" bgcolor="#1E90FF" border="1" width="391" height="25">
-            <p>MP</p>
+            <p class="p1">HP</p>
             <tr>
             </tr>
         </table>
+        <table class="table2" bgcolor="red" border="1" width="391" height="25">
+            <p class="p2">MP</p>
+            <tr>
+            </tr>
+        </table>
+        <br>
+        <img src="character.jpg" width="250" height="300" class="image1" alt="Персонаж">
     </section>
 
     <section name="inventory">
