@@ -1,0 +1,6 @@
+<img src="goblin.jpg" class="imageMonster" alt="Гоблин" (click)="onGoblinClicked()" >
+<table class="monsterHpTable" bgcolor="lightgreen" border="2" width="391" height="25" *ngIf="hpBlocks">
+  <tr>
+    <td *ngFor="let hpBlock of hpBlocks; let i = index;" class="{{getHpClassByIndex(i)}}"> </td>
+  </tr>
+</table>
