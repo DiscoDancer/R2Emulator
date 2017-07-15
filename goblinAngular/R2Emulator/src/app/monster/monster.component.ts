@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import {Goblin} from '../models/goblin';
 
 @Component({
@@ -10,8 +10,13 @@ export class MonsterComponent implements OnInit {
   goblin = new Goblin();
   hpBlocks: Array<boolean>;
 
-  constructor() {
+  makeGoblinAlive() {
     this.hpBlocks = [true, true, true, true, true];
+    this.goblin.hp = 100;
+  }
+
+  constructor() {
+    this.makeGoblinAlive();
   }
 
   getHpClassByIndex(index: number): string {
@@ -23,6 +28,15 @@ export class MonsterComponent implements OnInit {
 
     for (let i = 81, j = 4; j >= 0; i -= 20, j--) {
       this.hpBlocks[j] = this.goblin.hp > i;
+    }
+
+    if (this.goblin.hp === 0) {
+      setTimeout(() => {
+        const result = confirm('Гоблин мёртв. Воскресить?');
+        if (result === true) {
+          this.makeGoblinAlive();
+        }
+      }, 100);
     }
   }
 
