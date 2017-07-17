@@ -92,3 +92,13 @@
             left: 620px;
             top: 240px;
         }
+        .imageMonster2{
+            position: absolute;
+            top: 8px;
+            margin-left: 200px;
+        }
+        .gremlinHpTable{
+            position: relative;
+            margin-left: 200px;
+            margin-top: 305px;     
+        }
