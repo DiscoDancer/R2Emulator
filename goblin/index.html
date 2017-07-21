@@ -163,72 +163,6 @@
         </table>
     </section>
 
-    <section name="inventory1">
-        <table border="1" id="inventory1">
-            <thead>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                    <td>
-                        <img src="pictures/Empty_cell.jpg">
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-    </section>
-
     <script type="text/javascript" defer>
         $("#btnClean").click(function () {
             $('textarea').val('');
@@ -321,8 +255,59 @@
         });
 
         /*--------------------------------------------------------------------------------------------------------------------------- */
-
         var hp1 = 100;
+        var amountItem = 0;
+        function dropGremlin() {
+            var results = RandomNumber(0, 10);
+            var outLines = "* Вами был получен предмет [";
+            switch (results) {
+                case 0:
+                    outLines += _item[0].name;
+                    break;
+                case 1:
+                    outLines += _item[1].name;
+                    break;
+                case 2:
+                    outLines += _item[2].name;
+                    break;
+                case 3:
+                    outLines += _item[3].name;
+                    break;
+                case 4:
+                    outLines += _item[4].name;
+                    break;
+                case 5:
+                    outLines += _item[5].name;
+                    break;
+                case 6:
+                    outLines += _item[6].name;
+                    break;
+                case 7:
+                    outLines += _item[7].name;
+                    break;
+                case 8:
+                    outLines += _item[8].name;
+                    break;
+                case 9:
+                    outLines += _item[9].name;
+                    break;
+                default:
+                    break;
+            }
+            outLines += '].*';
+            writeSystemMessage(outLines);
+            addItemInventory(_item[results]);
+        }
+        function addItemInventory(item) {
+            if (amountItem === 16) {
+                $('#inventory > tbody > tr > td > img').attr("src", "pictures/Empty_cell.jpg");
+                amountItem = 0;
+            }
+            $('#inventory > tbody > tr:eq(' + Math.floor(amountItem / 4) + ') > td:eq(' + (amountItem % 4) + ') > img').attr("src", "pictures//" + item.imageUrl);
+            $('#inventory > tbody > tr:eq(' + Math.floor(amountItem / 4) + ') > td:eq(' + (amountItem % 4) + ')').attr("title", item.description);
+            amountItem++;
+        }
+
         function writeSystemMessage1(message) {
             var txt = $("textarea");
             txt.val(txt.val() + message + "\n");
@@ -346,7 +331,7 @@
                 $('#hp10').css('background', 'red').promise().done(function () {
                     setTimeout(function () {
                         writeSystemMessage1("* Вами был убит противник [Гремлин].*");
-                        /* dropGremlin();*/
+                         dropGremlin();
                         setTimeout(function () {
                             var result = confirm('Гремлин мёртв. Воскресить?');
                             if (result === true) {
