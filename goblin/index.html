@@ -7,10 +7,10 @@
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="items.js">
-
     </script>
     <script src="helper.js">
-
+    </script>
+    <script src="system.js">
     </script>
 </head>
 
@@ -164,67 +164,41 @@
     </section>
 
     <script type="text/javascript" defer>
-        $("#btnClean").click(function () {
-            $('textarea').val('');
-        });
-
-        /* function autoAttack() {
-             $(".imageMonster1").click(function(){
-                 
-         });
-             setTimeout(autoAttack, 1000);
- 
-         }*/
-
-
-        var hp = 100;
+        setOnClearBtnAction();
+        initInventoryCells();
+        var hp = 100; // goblin hp
+        var hp1 = 100; // gremlin hp
         var amountItems = 0;
 
-        function writeSystemMessage(message) {
-            var txt = $("textarea");
-            txt.val(txt.val() + message + "\n");
-        }
-
-        function dropGoblin() {
-            var result = getRandomNumber(0, 5);
+        function dropFromMonster(itemAmount, items) {
+            var result = getRandomNumber(0, itemAmount);
             var outLine = "* Вами был получен предмет [";
-            switch (result) {
-                case 0:
-                    outLine += _items[0].name;
-                    break;
-                case 1:
-                    outLine += _items[1].name;
-                    break;
-                case 2:
-                    outLine += _items[2].name;
-                    break;
-                case 3:
-                    outLine += _items[3].name;
-                    break;
-                case 4:
-                    outLine += _items[4].name;
-                    break;
-                default:
-                    break;
+            for (var i = 0; i < itemAmount; i++) {
+                if (result === i) {
+                    outLine += items[i].name;
+                }
             }
             outLine += '].*';
             writeSystemMessage(outLine);
-            addItemToInventory(_items[result]);
+            amountItems = addItemToInventory(items[result], amountItems);
         }
 
-        function addItemToInventory(item) {
-            if (amountItems === 16) {
-                $('#inventory > tbody > tr > td > img').attr("src", "pictures/Empty_cell.jpg");
-                amountItems = 0;
-            }
-            $('#inventory > tbody > tr:eq(' + Math.floor(amountItems / 4) + ') > td:eq(' + (amountItems % 4) + ') > img').attr("src", "pictures//" + item.imageUrl);
-            $('#inventory > tbody > tr:eq(' + Math.floor(amountItems / 4) + ') > td:eq(' + (amountItems % 4) + ')').attr("title", item.description);
-            amountItems++;
+        function dropGoblin() {
+            dropFromMonster(5, _items_goblin);
+        }
+
+        function dropGremlin() {
+            dropFromMonster(10, _items_gremlin);
         }
 
         function makeGoblinAlive() {
             $('.hp').css('background', 'lightgreen');
             hp = 100;
+        }
+
+        function makeGremlinAlive() {
+            $('.hp2').css('background', 'lightgreen');
+            hp1 = 100;
         }
 
         $(".imageMonster1").click(function () {
@@ -254,68 +228,6 @@
             }
         });
 
-        /*--------------------------------------------------------------------------------------------------------------------------- */
-        var hp1 = 100;
-        var amountItems = 0;
-        function dropGremlin() {
-            var results = RandomNumber(5, 15);
-            var outLines = "* Вами был получен предмет [";
-            switch (results) {
-                case 0:
-                    outLines += _items[0].name;
-                    break;
-                case 1:
-                    outLines += _items[1].name;
-                    break;
-                case 2:
-                    outLines += _items[2].name;
-                    break;
-                case 3:
-                    outLines += _items[3].name;
-                    break;
-                case 4:
-                    outLines += _items[4].name;
-                    break;
-                case 5:
-                    outLines += _items[5].name;
-                    break;
-                case 6:
-                    outLines += _items[6].name;
-                    break;
-                case 7:
-                    outLines += _items[7].name;
-                    break;
-                case 8:
-                    outLines += _items[8].name;
-                    break;
-                case 9:
-                    outLines += _items[9].name;
-                    break;
-                default:
-                    break;
-            }
-            outLines += '].*';
-            writeSystemMessage(outLines);
-            addItemToInventory(_items[results]);
-        }
-    /*    function addItemInventory(item) {
-            if (amountItem === 16) {
-                $('#inventory > tbody > tr > td > img').attr("src", "pictures/Empty_cell.jpg");
-                amountItem = 0;
-            }
-            $('#inventory > tbody > tr:eq(' + Math.floor(amountItem / 4) + ') > td:eq(' + (amountItem % 4) + ') > img').attr("src", "pictures//" + item.imageUrl);
-            $('#inventory > tbody > tr:eq(' + Math.floor(amountItem / 4) + ') > td:eq(' + (amountItem % 4) + ')').attr("title", item.description);
-            amountItem++;
-        }*/
-
-        function writeSystemMessage1(message) {
-            var txt = $("textarea");
-            txt.val(txt.val() + message + "\n");
-        }
-        function makeGremlinAlive() {
-            $('.hp2').css('background', 'lightgreen');
-            hp1 = 100;
-        }
         $(".imageMonster2").click(function () {
             hp1 -= 20;
             $('.hp2').css('background', 'lightgreen');
@@ -330,7 +242,7 @@
             if (hp1 < 1) {
                 $('#hp10').css('background', 'red').promise().done(function () {
                     setTimeout(function () {
-                        writeSystemMessage1("* Вами был убит противник [Гремлин].*");
+                        writeSystemMessage("* Вами был убит противник [Гремлин].*");
                          dropGremlin();
                         setTimeout(function () {
                             var result = confirm('Гремлин мёртв. Воскресить?');
