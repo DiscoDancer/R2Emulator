@@ -256,49 +256,49 @@
 
         /*--------------------------------------------------------------------------------------------------------------------------- */
         var hp1 = 100;
-        var amountItem = 0;
+        var amountItems = 0;
         function dropGremlin() {
-            var results = RandomNumber(0, 10);
+            var results = RandomNumber(5, 15);
             var outLines = "* Вами был получен предмет [";
             switch (results) {
                 case 0:
-                    outLines += _item[0].name;
+                    outLines += _items[0].name;
                     break;
                 case 1:
-                    outLines += _item[1].name;
+                    outLines += _items[1].name;
                     break;
                 case 2:
-                    outLines += _item[2].name;
+                    outLines += _items[2].name;
                     break;
                 case 3:
-                    outLines += _item[3].name;
+                    outLines += _items[3].name;
                     break;
                 case 4:
-                    outLines += _item[4].name;
+                    outLines += _items[4].name;
                     break;
                 case 5:
-                    outLines += _item[5].name;
+                    outLines += _items[5].name;
                     break;
                 case 6:
-                    outLines += _item[6].name;
+                    outLines += _items[6].name;
                     break;
                 case 7:
-                    outLines += _item[7].name;
+                    outLines += _items[7].name;
                     break;
                 case 8:
-                    outLines += _item[8].name;
+                    outLines += _items[8].name;
                     break;
                 case 9:
-                    outLines += _item[9].name;
+                    outLines += _items[9].name;
                     break;
                 default:
                     break;
             }
             outLines += '].*';
             writeSystemMessage(outLines);
-            addItemInventory(_item[results]);
+            addItemToInventory(_items[results]);
         }
-        function addItemInventory(item) {
+    /*    function addItemInventory(item) {
             if (amountItem === 16) {
                 $('#inventory > tbody > tr > td > img').attr("src", "pictures/Empty_cell.jpg");
                 amountItem = 0;
@@ -306,7 +306,7 @@
             $('#inventory > tbody > tr:eq(' + Math.floor(amountItem / 4) + ') > td:eq(' + (amountItem % 4) + ') > img').attr("src", "pictures//" + item.imageUrl);
             $('#inventory > tbody > tr:eq(' + Math.floor(amountItem / 4) + ') > td:eq(' + (amountItem % 4) + ')').attr("title", item.description);
             amountItem++;
-        }
+        }*/
 
         function writeSystemMessage1(message) {
             var txt = $("textarea");
